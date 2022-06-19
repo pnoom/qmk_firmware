@@ -42,6 +42,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // there's a risk of burn-in. Default is one minute (60000ms).
 #define OLED_TIMEOUT 120000
 
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define CAPS_WORD_IDLE_TIMEOUT 5000
+
 // Underglow
 /*
 #undef RGBLED_NUM

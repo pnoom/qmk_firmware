@@ -162,3 +162,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // }
   return true;
 }
+
+void caps_word_set_user(bool active) {
+    if (active) {
+        // Do something when Caps Word activates.
+        if (is_keyboard_master()) {
+          oled_write_ln("CAPS", false);
+        }
+    } else {
+        // Do something when Caps Word deactivates.
+        if (is_keyboard_master()) {
+          oled_write_ln("    ", false);
+        }
+    }
+}
