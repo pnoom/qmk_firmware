@@ -140,7 +140,10 @@ static void render_logo(void) {
 bool oled_task_user(void) {
   if (is_keyboard_master()) {
     // If you want to change the display of OLED, you need to change here
+    oled_write_ln("LAYER", false);
+    // oled_write_ln("      ", false);
     oled_write_ln(read_layer_state(), false);
+    oled_write_ln("     ", false);
     // oled_write_ln(read_keylog(), false);
     // oled_write_ln(read_keylogs(), false);
     //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
@@ -167,32 +170,47 @@ void caps_word_set_user(bool active) {
     if (active) {
         // Do something when Caps Word activates.
         if (is_keyboard_master()) {
-          oled_write_ln("CAPS", false);
+          oled_write_ln("CAPS ", false);
+          // oled_write_ln("      ", false);
+          oled_write_ln("ON   ", false);
+          oled_write_ln("     ", false);
         }
     } else {
         // Do something when Caps Word deactivates.
         if (is_keyboard_master()) {
-          oled_write_ln("    ", false);
+          oled_write_ln("CAPS ", false);
+          // oled_write_ln("     ", false);
+          oled_write_ln("OFF  ", false);
+          oled_write_ln("     ", false);
         }
     }
 }
 
 void oneshot_mods_changed_user(uint8_t mods) {
   if (is_keyboard_master()) {
+    oled_write_ln("HELD ", false);
     if (mods & MOD_MASK_SHIFT) {
       oled_write_ln("SHIFT", false);
+    } else {
+      oled_write_ln("     ", false);
     }
     if (mods & MOD_MASK_CTRL) {
-      oled_write_ln("CTRL  ", false);
+      oled_write_ln("CTRL ", false);
+    } else {
+      oled_write_ln("     ", false);
     }
     if (mods & MOD_MASK_ALT) {
       oled_write_ln("ALT  ", false);
+    } else {
+      oled_write_ln("     ", false);
     }
     if (mods & MOD_MASK_GUI) {
       oled_write_ln("WIN  ", false);
-    }
-    if (!mods) {
+    } else {
       oled_write_ln("     ", false);
     }
+    // if (!mods) {
+    //   oled_write_ln("     ", false);
+    // }
   }
 }
