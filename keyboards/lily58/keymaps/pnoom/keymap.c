@@ -126,29 +126,20 @@ static void render_logo(void) {
     // Psyduck image is 32 pixels wide, and 40 pixels high, column-major.
     // So 5 horizontal stripes, starting at the top, each containing 32 bytes.
     // Each byte represents a vertical stripe of 8 pixels.
-    static const char PROGMEM raw_logo[] = {
-        0,  0,  0,  0,  0,  0,128, 64, 32, 16,200,168,144,136,  8,  4,  4,  4,  4,  4,  4,  4,  8, 16, 16, 62,112,168, 36, 16,  0,  0,
-        0,  0,  0,  0,120,134,  1,  0,128,254, 73, 48, 18, 80, 25, 14,  8, 72, 16, 32, 44, 82, 97,165, 33, 18,204, 33,226, 28,112,128,
-        0,  0,  0,  0,  0,  0,143, 81, 32, 32, 64, 64,128,128,128,128,128, 64, 64, 32, 24,  6,  5,  4, 30,  1,  0,128,128, 64, 60,  3,
-        224, 16, 60,  4,  8, 14, 17, 96,128,  0,  0,  0,  0,  0,  0,  0,128, 64, 64,128, 64, 32,192,  1,  1,129,127, 16, 16,144, 96,  0,
-        0,  1,  2,  4,  8,  8, 16, 16, 17, 14,  8,  8,  8, 16, 16, 16, 31, 48, 64, 64, 64, 64, 33, 21, 11,  8,  4,  4,  2,  1,  0,  0,
-    };
-    oled_write_raw_P(raw_logo, sizeof(raw_logo));
+    // static const char PROGMEM raw_logo[] = {
+    //     0,  0,  0,  0,  0,  0,128, 64, 32, 16,200,168,144,136,  8,  4,  4,  4,  4,  4,  4,  4,  8, 16, 16, 62,112,168, 36, 16,  0,  0,
+    //     0,  0,  0,  0,120,134,  1,  0,128,254, 73, 48, 18, 80, 25, 14,  8, 72, 16, 32, 44, 82, 97,165, 33, 18,204, 33,226, 28,112,128,
+    //     0,  0,  0,  0,  0,  0,143, 81, 32, 32, 64, 64,128,128,128,128,128, 64, 64, 32, 24,  6,  5,  4, 30,  1,  0,128,128, 64, 60,  3,
+    //     224, 16, 60,  4,  8, 14, 17, 96,128,  0,  0,  0,  0,  0,  0,  0,128, 64, 64,128, 64, 32,192,  1,  1,129,127, 16, 16,144, 96,  0,
+    //     0,  1,  2,  4,  8,  8, 16, 16, 17, 14,  8,  8,  8, 16, 16, 16, 31, 48, 64, 64, 64, 64, 33, 21, 11,  8,  4,  4,  2,  1,  0,  0,
+    // };
+    // oled_write_raw_P(raw_logo, sizeof(raw_logo));
 }
 
 
 bool oled_task_user(void) {
   if (is_keyboard_master()) {
-    // If you want to change the display of OLED, you need to change here
-    // oled_write_ln("LAYER", false);
-    // oled_write_ln("      ", false);
-    oled_write(read_layer_state(), false);
-    // oled_write_ln("     ", false);
-    // oled_write_ln(read_keylog(), false);
-    // oled_write_ln(read_keylogs(), false);
-    //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
-    //oled_write_ln(read_host_led_state(), false);
-    // oled_write_ln(read_timelog(), false);
+    oled_write_ln(read_layer_state(), false);
   } else {
     render_logo();
   }
@@ -170,18 +161,18 @@ void caps_word_set_user(bool active) {
     if (active) {
         // Do something when Caps Word activates.
         if (is_keyboard_master()) {
-          oled_write_ln("CAP", false);
+          oled_write_ln("CAPS", false);
         }
     } else {
         // Do something when Caps Word deactivates.
         if (is_keyboard_master()) {
-          oled_write_ln("   ", false);
+          oled_write_ln("    ", false);
         }
     }
 }
 
 void oneshot_mods_changed_user(uint8_t mods) {
-  if (is_keyboard_master()) {
+  if (!is_keyboard_master()) {
     // oled_write_ln("HELD ", false);
     if (mods & MOD_MASK_CTRL) {
       oled_write("C", false);
