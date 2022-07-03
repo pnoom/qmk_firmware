@@ -15,13 +15,13 @@ const char *read_layer_state(void) {
   switch (layer_state)
   {
   case L_BASE:
-    snprintf(layer_state_str, sizeof(layer_state_str), "MAIN");
+    snprintf(layer_state_str, sizeof(layer_state_str), "1 ");
     break;
   case L_RAISE:
     snprintf(layer_state_str, sizeof(layer_state_str), "Unused1");
     break;
   case L_LOWER:
-    snprintf(layer_state_str, sizeof(layer_state_str), "AUX");
+    snprintf(layer_state_str, sizeof(layer_state_str), "2 ");
     break;
   case L_ADJUST:
   case L_ADJUST_TRI:
