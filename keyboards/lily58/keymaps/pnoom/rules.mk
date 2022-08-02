@@ -10,7 +10,7 @@ RGBLIGHT_ENABLE = no       # Enable WS2812 RGB underlight.
 SWAP_HANDS_ENABLE = no      # Enable one-hand typing
 OLED_ENABLE = yes     # OLED display
 UNICODE_ENABLE = yes
-CAPS_WORD_ENABLE = yes
+CAPS_WORD_ENABLE = no
 
 # If you want to change the display of OLED, you need to change here
 SRC +=  ./lib/layer_state_reader.c \

@@ -42,9 +42,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // there's a risk of burn-in. Default is one minute (60000ms).
 #define OLED_TIMEOUT 120000
 
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+// #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 // #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
-#define CAPS_WORD_IDLE_TIMEOUT 5000
+// #define CAPS_WORD_IDLE_TIMEOUT 5000
 
 // #define ONESHOT_TAP_TOGGLE 3  // Tapping this number of times holds the key until tapped once again.
 #define ONESHOT_TIMEOUT 5000  // Time (in ms) before the one shot key is released
