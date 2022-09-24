@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT(
-  TO(_QWERTY), KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                      KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, KC_DEL,
+  TG(_LOWER), KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                      KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, KC_DEL,
   _______, KC_WH_L, KC_MS_U, KC_WH_R, KC_WH_U, KC_PSCR,                   KC_MPRV, KC_MNXT, KC_UP, KC_F11,  KC_F12,  _______,
   _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, UC(0x00e9),                KC_PGUP, KC_LEFT, KC_DOWN, KC_RIGHT, KC_QUOTE, _______,
   KC_VOLU, KC_BTN1, KC_BTN3, KC_BTN2, _______, KC_GRV,  _______, _______, KC_PGDN, KC_BTN1, KC_BTN3, KC_BTN2, KC_NONUS_HASH, KC_VOLD,
