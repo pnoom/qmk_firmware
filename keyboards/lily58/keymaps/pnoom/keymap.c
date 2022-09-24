@@ -35,22 +35,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |Main  |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |MsWhlL|MsUp  |MsWhlR|MsWhlU|PrtSrc|                    |      |      |ArrowU| F11  | F12  |      |
+ * |      |MsWhlL|MsUp  |MsWhlR|MsWhlU|PrtSrc|                    |PrevT |NextT |ArrowU| F11  | F12  |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |MsL   |MsDn  |MsR   |MsWhlD|eacute|-------.    ,-------|PgUp  |ArrowL|ArrowD|ArrowR| Quot |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |MsBtnL|MsBtnM|MsBtnR|Del   |BkTick|-------|    |-------|PgDn  |MsBtnL|MsBtnM|MsBtnR| Hash |      |
+ * |VolUp |MsBtnL|MsBtnM|MsBtnR|Del   |BkTick|-------|    |-------|PgDn  |MsBtnL|MsBtnM|MsBtnR| Hash |VolDn |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |      |      | Win  | /       /       \      \  |      |      |      |
+ *                   |Ply/Ps|      | Win  | /       /       \      \  |      |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT(
   TO(_QWERTY), KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                      KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, _______,
-  _______, KC_WH_L, KC_MS_U, KC_WH_R, KC_WH_U, KC_PSCR,                   _______, _______, KC_UP, KC_F11,  KC_F12,  _______,
+  _______, KC_WH_L, KC_MS_U, KC_WH_R, KC_WH_U, KC_PSCR,                   KC_MPRV, KC_MNXT, KC_UP, KC_F11,  KC_F12,  _______,
   _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, UC(0x00e9),                KC_PGUP, KC_LEFT, KC_DOWN, KC_RIGHT, KC_QUOTE, _______,
-  _______, KC_BTN1, KC_BTN3, KC_BTN2, KC_DEL, KC_GRV,  _______, _______, KC_PGDN, KC_BTN1, KC_BTN3, KC_BTN2, KC_NONUS_HASH, _______,
-                             _______, _______, OSM(MOD_LGUI), _______, _______, _______, _______, _______
+  KC_VOLU, KC_BTN1, KC_BTN3, KC_BTN2, KC_DEL, KC_GRV,  _______, _______, KC_PGDN, KC_BTN1, KC_BTN3, KC_BTN2, KC_NONUS_HASH, KC_VOLD,
+                             KC_MPLY, _______, OSM(MOD_LGUI), _______, _______, _______, _______, _______
 ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
