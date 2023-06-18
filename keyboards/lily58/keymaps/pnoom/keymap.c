@@ -136,7 +136,6 @@ static void render_logo(void) {
     oled_write_raw_P(raw_logo, sizeof(raw_logo));
 }
 
-
 bool oled_task_user(void) {
   if (is_keyboard_master()) {
     oled_set_cursor(0, 0);
@@ -144,8 +143,20 @@ bool oled_task_user(void) {
     oled_write_ln("LAYERS", false); // line 0
     oled_advance_page(true);
 
-    // TODO: check if each layer is active and write char (or space) to hardcoded col
-    // line 2
+    uint8_t line = 2;
+    char letter;
+
+    letter = (layer_state == L_BASE) ? 'B' : ' ';
+    oled_set_cursor(0, line);
+    oled_write(&letter, false);
+
+    letter = (layer_state == L_LOWER) ? 'L' : ' ';
+    // oled_set_cursor(1, line);
+    oled_write(&letter, false);
+
+    letter = (layer_state == L_MOUSE) ? 'M' : ' ';
+    // oled_set_cursor(2, line);
+    oled_write(&letter, false);
 
     oled_advance_page(true);
     oled_advance_page(true);
@@ -189,6 +200,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void oneshot_mods_changed_user(uint8_t mods) {
   uint8_t line = 5;
+  // TODO: consider using ternary operator to make this more readable
   if (is_keyboard_master()) {
     if (mods & MOD_MASK_CTRL) {
       oled_set_cursor(0, line);
