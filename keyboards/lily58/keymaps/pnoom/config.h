@@ -27,6 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define EE_HANDS
 
 #define TAPPING_FORCE_HOLD
+// Determines how long you have to hold a key down for it to be considered a hold
+// instead of a tap. Default is 200ms. Should experiment with this.
 #define TAPPING_TERM 100
 
 #undef RGBLED_NUM
