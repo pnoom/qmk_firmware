@@ -164,7 +164,13 @@ bool oled_task_user(void) {
     letter = (layer_state & L_MOUSE) ? 'M' : ' ';
     oled_write(&letter, false);
 
-    line += 2;
+    line += 1;
+
+    // Clear garbage from screen. Shouldn't be needed, but whatever
+    oled_set_cursor(0, line);
+    oled_write("     ", false);
+
+    line += 1;
 
     oled_set_cursor(0, line);
     oled_write("MODS", false);
