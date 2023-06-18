@@ -152,15 +152,15 @@ bool oled_task_user(void) {
 
     line += 2;
 
-    oled_set_cursor(0, line);
-    letter = 'B'; // (layer_state & L_BASE) ? 'B' : ' ';
-    oled_write(&letter, false);
+    // oled_set_cursor(0, line);
+    // letter = 'B'; // (layer_state & L_BASE) ? 'B' : ' ';
+    // oled_write(&letter, false);
 
-    oled_set_cursor(1, line);
+    oled_set_cursor(0, line);
     letter = (layer_state & L_LOWER) ? 'L' : ' ';
     oled_write(&letter, false);
 
-    oled_set_cursor(2, line);
+    oled_set_cursor(1, line);
     letter = (layer_state & L_MOUSE) ? 'M' : ' ';
     oled_write(&letter, false);
 
@@ -173,7 +173,7 @@ bool oled_task_user(void) {
     line += 1;
 
     oled_set_cursor(0, line);
-    oled_write("MODS", false);
+    oled_write("MOD", false);
 
     line += 2;
     // Active modifiers will be listed in separate callback
@@ -212,7 +212,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // }
 
 void oneshot_mods_changed_user(uint8_t mods) {
-  uint8_t line = 7;
+  uint8_t line = 6;
   // TODO: consider using ternary operator to make this more readable
   if (is_keyboard_master()) {
     if (mods & MOD_MASK_CTRL) {
