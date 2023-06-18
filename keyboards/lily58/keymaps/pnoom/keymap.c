@@ -1,13 +1,19 @@
 #include QMK_KEYBOARD_H
 
+#define L_BASE 0
+#define L_LOWER (1 << 1)
+#define L_MOUSE (1 << 2)
+#define L_ADJUST (1 << 3)
+#define L_ADJUST_TRI (L_ADJUST | L_MOUSE | L_LOWER)
+
+#define MODTAPTMP LT(_LOWER, KC_SPC)
+
 enum layer_number {
   _QWERTY = 0,
   _LOWER,
   _MOUSE,
   _ADJUST,
 };
-
-#define MODTAPTMP LT(_LOWER, KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -111,11 +117,11 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 // When you add source files to SRC in rules.mk, you can use functions.
-const char *read_layer_state(void);
-const char *read_logo(void);
-void set_keylog(uint16_t keycode, keyrecord_t *record);
-const char *read_keylog(void);
-const char *read_keylogs(void);
+// const char *read_layer_state(void);
+// const char *read_logo(void);
+// void set_keylog(uint16_t keycode, keyrecord_t *record);
+// const char *read_keylog(void);
+// const char *read_keylogs(void);
 
 // const char *read_mode_icon(bool swap);
 // const char *read_host_led_state(void);
