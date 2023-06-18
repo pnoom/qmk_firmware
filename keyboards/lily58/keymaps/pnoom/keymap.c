@@ -143,33 +143,33 @@ static void render_logo(void) {
 }
 
 bool oled_task_user(void) {
+  uint8_t line = 0;
+  char letter;
+
   if (is_keyboard_master()) {
-    oled_set_cursor(0, 0);
-
-    oled_write_ln("LAYERS", false); // line 0
-    oled_advance_page(true);
-
-    uint8_t line = 2;
-    char letter;
-
-    letter = (layer_state == L_BASE) ? 'B' : ' ';
     oled_set_cursor(0, line);
+    oled_write("LAYER", false);
+
+    line += 2;
+
+    oled_set_cursor(0, line);
+    letter = 'B' // (layer_state & L_BASE) ? 'B' : ' ';
     oled_write(&letter, false);
 
-    letter = (layer_state == L_LOWER) ? 'L' : ' ';
-    // oled_set_cursor(1, line);
+    oled_set_cursor(1, line);
+    letter = (layer_state & L_LOWER) ? 'L' : ' ';
     oled_write(&letter, false);
 
-    letter = (layer_state == L_MOUSE) ? 'M' : ' ';
-    // oled_set_cursor(2, line);
+    oled_set_cursor(2, line);
+    letter = (layer_state & L_MOUSE) ? 'M' : ' ';
     oled_write(&letter, false);
 
-    oled_advance_page(true);
-    oled_advance_page(true);
+    line += 2;
 
-    oled_write_ln("MODS", false); // line 4
-    oled_advance_page(true);
-    // Active modifiers will be listed in separate callback   // line 5
+    oled_write("MODS", false);
+
+    line += 2;
+    // Active modifiers will be listed in separate callback
   } else {
     oled_set_cursor(0, 0);
     render_logo();
@@ -205,7 +205,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // }
 
 void oneshot_mods_changed_user(uint8_t mods) {
-  uint8_t line = 5;
+  uint8_t line = 7;
   // TODO: consider using ternary operator to make this more readable
   if (is_keyboard_master()) {
     if (mods & MOD_MASK_CTRL) {
