@@ -153,7 +153,7 @@ bool oled_task_user(void) {
     line += 2;
 
     oled_set_cursor(0, line);
-    letter = 'B' // (layer_state & L_BASE) ? 'B' : ' ';
+    letter = 'B'; // (layer_state & L_BASE) ? 'B' : ' ';
     oled_write(&letter, false);
 
     oled_set_cursor(1, line);
@@ -166,6 +166,7 @@ bool oled_task_user(void) {
 
     line += 2;
 
+    oled_set_cursor(0, line);
     oled_write("MODS", false);
 
     line += 2;
