@@ -3,7 +3,7 @@
 enum layer_number {
   _QWERTY = 0,
   _LOWER,
-  _RAISE,
+  _MOUSE,
   _ADJUST,
 };
 
@@ -52,27 +52,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_VOLU, KC_BTN1, KC_BTN3, KC_BTN2, _______, KC_GRV,  _______, _______, KC_PGDN, KC_BTN1, KC_BTN3, KC_BTN2, KC_NONUS_HASH, KC_VOLD,
                              KC_MPLY, _______, OSM(MOD_LGUI), _______, _______, _______, _______, _______
 ),
-/* RAISE
+/* MOUSE
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |Main  |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  |Del   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   `  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |      |
+ * |      |MsWhlL|MsUp  |MsWhlR|MsWhlU|PrtSrc|                    |PrevT |NextT |ArrowU| F11  | F12  |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |-------.    ,-------|      | Left | Down |  Up  |Right |      |
- * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |  F7  |  F8  |  F9  | F10  | F11  | F12  |-------|    |-------|   +  |   -  |   =  |   [  |   ]  |   \  |
+ * |      |MsL   |MsDn  |MsR   |MsWhlD|eacute|-------.    ,-------|PgUp  |ArrowL|ArrowD|ArrowR| Quot |      |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |VolUp |MsBtnL|MsBtnM|MsBtnR|      |BkTick|-------|    |-------|PgDn  |MsBtnL|MsBtnM|MsBtnR| Hash |VolDn |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
+ *                   |Ply/Ps|      | Win  | /       /       \      \  |      |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-
-[_RAISE] = LAYOUT(
-  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-  KC_F1,  KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,                       XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
-  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   _______, _______,  KC_PLUS, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
-                             _______, _______, _______,  _______, _______,  _______, _______, _______
+[_MOUSE] = LAYOUT(
+  TG(_MOUSE), KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                      KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, KC_DEL,
+  _______, KC_WH_L, KC_MS_U, KC_WH_R, KC_WH_U, KC_PSCR,                   KC_MPRV, KC_MNXT, KC_UP, KC_F11,  KC_F12,  _______,
+  _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, UC(0x00e9),                KC_PGUP, KC_LEFT, KC_DOWN, KC_RIGHT, KC_QUOTE, _______,
+  KC_VOLU, KC_BTN1, KC_BTN3, KC_BTN2, _______, KC_GRV,  _______, _______, KC_PGDN, KC_BTN1, KC_BTN3, KC_BTN2, KC_NONUS_HASH, KC_VOLD,
+                             KC_MPLY, _______, OSM(MOD_LGUI), _______, _______, _______, _______, _______
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -98,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+  return update_tri_layer_state(state, _LOWER, _MOUSE, _ADJUST);
 }
 
 //SSD1306 OLED update loop, make sure to enable OLED_ENABLE=yes in rules.mk
