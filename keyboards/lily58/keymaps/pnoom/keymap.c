@@ -140,7 +140,19 @@ static void render_logo(void) {
 bool oled_task_user(void) {
   if (is_keyboard_master()) {
     oled_set_cursor(0, 0);
-    oled_write_ln(read_layer_state(), false);
+
+    oled_write_ln("LAYERS", false); // line 0
+    oled_advance_page(true);
+
+    // TODO: check if each layer is active and write char (or space) to hardcoded col
+    // line 2
+
+    oled_advance_page(true);
+    oled_advance_page(true);
+
+    oled_write_ln("MODS", false); // line 4
+    oled_advance_page(true);
+    // Active modifiers will be listed in separate callback   // line 5
   } else {
     oled_set_cursor(0, 0);
     render_logo();
@@ -176,33 +188,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // }
 
 void oneshot_mods_changed_user(uint8_t mods) {
+  uint8_t line = 5;
   if (is_keyboard_master()) {
     if (mods & MOD_MASK_CTRL) {
-      oled_set_cursor(0, 3);
+      oled_set_cursor(0, line);
       oled_write("C", false);
     } else {
-      oled_set_cursor(0, 3);
+      oled_set_cursor(0, line);
       oled_write(" ", false);
     }
     if (mods & MOD_MASK_SHIFT) {
-      oled_set_cursor(1, 3);
+      oled_set_cursor(1, line);
       oled_write("S", false);
     } else {
-      oled_set_cursor(1, 3);
+      oled_set_cursor(1, line);
       oled_write(" ", false);
     }
     if (mods & MOD_MASK_ALT) {
-      oled_set_cursor(2, 3);
+      oled_set_cursor(2, line);
       oled_write("A", false);
     } else {
-      oled_set_cursor(2, 3);
+      oled_set_cursor(2, line);
       oled_write(" ", false);
     }
     if (mods & MOD_MASK_GUI) {
-      oled_set_cursor(3, 3);
+      oled_set_cursor(3, line);
       oled_write("W", false);
     } else {
-      oled_set_cursor(3, 3);
+      oled_set_cursor(3, line);
       oled_write(" ", false);
     }
     // if (!mods) {
